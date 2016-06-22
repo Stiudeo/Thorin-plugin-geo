@@ -1,0 +1,20 @@
+{
+  "name": "thorin-plugin-geo",
+  "author": "Stiudeo",
+  "version": "1.0.2",
+  "dependencies": {
+    "geoip-lite": "^1.1.8",
+    "geoip-ultralight": "^0.1.3"
+  },
+  "description": "Thorin.js extended utilities",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Stiudeo/Thorin-plugin-geo"
+  },
+  "homepage": "http://thorinjs.com",
+  "bugs": {
+    "url": "https://github.com/Stiudeo/Thorin-plugin-geo/issues"
+  }
+}
