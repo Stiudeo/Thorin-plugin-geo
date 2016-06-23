@@ -15,9 +15,9 @@ let COUNTRIES = {}, COUNTRIES_ISO3 = {}, REGIONS = {}, CONTINENTS = {};
 * We will lazy load geoip-light and autoload geoip-ultralight.
 * So that at the FIRST lookup() function, we'll load the ip db in memory.
 * */
-module.exports = function (thorin, opt) {
+module.exports = function (thorin, opt, pluginName) {
   opt = thorin.util.extend({
-    logger: 'geo',
+    logger: pluginName || 'geo',
     regional: true,         // should we load the regional information that gives us countries and region lookup
     autoload: false
   }, opt);
