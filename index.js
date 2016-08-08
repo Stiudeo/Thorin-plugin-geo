@@ -6,8 +6,6 @@ const geoIntent = require('./lib/geoIntent.js'),
   initLookup = require('./lib/lookup.js'),
   loadRegional = require('./lib/loader.js');
 
-let geoip, geoipUltra;
-
 let COUNTRIES = {}, COUNTRIES_ISO3 = {}, REGIONS = {}, CONTINENTS = {};
 
 /*
@@ -33,7 +31,7 @@ module.exports = function (thorin, opt, pluginName) {
   /**
   * A few country-specific getters, works with ISO2 and ISO3 codes
   * */
-  pluginObj.getCountries = (code) => {
+  pluginObj.getCountries = () => {
     let res = [];
     let items = Object.keys(COUNTRIES);
     for(let i=0, len = items.length; i < len; i++) {
