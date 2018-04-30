@@ -29,12 +29,12 @@ module.exports = function (thorin, opt, pluginName) {
 
 
   /**
-  * A few country-specific getters, works with ISO2 and ISO3 codes
-  * */
+   * A few country-specific getters, works with ISO2 and ISO3 codes
+   * */
   pluginObj.getCountries = () => {
     let res = [];
     let items = Object.keys(COUNTRIES);
-    for(let i=0, len = items.length; i < len; i++) {
+    for (let i = 0, len = items.length; i < len; i++) {
       res.push({
         code: items[i],
         name: COUNTRIES[items[i]].name
@@ -47,42 +47,42 @@ module.exports = function (thorin, opt, pluginName) {
   }
   pluginObj.getCountryName = (code) => {
     let country = getCountry(code);
-    if(!country) return null;
+    if (!country) return null;
     return country.name;
   }
   pluginObj.getCountryTel = (code) => {
     let country = getCountry(code);
-    if(!country) return null;
+    if (!country) return null;
     let tels = country.tel;
-    if(!tels || tels === '') return null;
+    if (!tels || tels === '') return null;
     tels = tels.split(',');
-    for(let i=0; i < tels.length; i++) {
+    for (let i = 0; i < tels.length; i++) {
       tels[i] = parseInt(tels[i]);
     }
-    if(tels.length === 0) return null;
+    if (tels.length === 0) return null;
     return tels;
   }
   pluginObj.getCountryContinent = (code) => {
     let country = getCountry(code);
-    if(!country) return null;
+    if (!country) return null;
     return CONTINENTS[country.continent] || null;
   }
   pluginObj.getCountryRegions = (code) => {
     let res = [],
       country = getCountry(code);
-    if(!country) return res;
+    if (!country) return res;
     let tmp = REGIONS[country.code];
-    if(!tmp || tmp.length === 0) return res;
+    if (!tmp || tmp.length === 0) return res;
     let items = Object.keys(tmp);
-    for(let i=0, len = items.length; i < len; i++) {
+    for (let i = 0, len = items.length; i < len; i++) {
       res.push({
         code: items[i],
         name: tmp[items[i]]
       });
     }
     res.sort((a, b) => {
-      if(a.name < b.name) return -1;
-      if(a.name > b.name) return 1;
+      if (a.name < b.name) return -1;
+      if (a.name > b.name) return 1;
       return 0;
     });
     return res;
@@ -94,18 +94,17 @@ module.exports = function (thorin, opt, pluginName) {
    * */
   pluginObj.getRegionName = (countryCode, regionCode) => {
     let country = getCountry(countryCode);
-    if(!country) return null;
+    if (!country) return null;
     let tmp = REGIONS[country.code];
-    if(!tmp) return null;
+    if (!tmp) return null;
     regionCode = regionCode.toString().toUpperCase();
     return tmp[regionCode] || null;
   }
 
   // If we want regional support, attach it
   pluginObj.run = function (done) {
-    if(!opt.regional) return done();
     loadRegional(thorin, opt, pluginObj, (e, d) => {
-      if(e) return done(e);
+      if (e) return done(e);
       COUNTRIES = d.COUNTRIES;
       COUNTRIES_ISO3 = d.COUNTRIES_ISO3;
       REGIONS = d.REGIONS;
@@ -121,11 +120,11 @@ module.exports.publicName = 'geo';
 
 /* Private and utility functions */
 function getCountry(code) {
-  if(typeof code !== 'string' || !code) return null;
+  if (typeof code !== 'string' || !code) return null;
   code = code.toUpperCase();
-  if(code.length > 2) {
+  if (code.length > 2) {
     code = COUNTRIES_ISO3[code];
   }
-  if(!code) return null;
+  if (!code) return null;
   return COUNTRIES[code];
 }

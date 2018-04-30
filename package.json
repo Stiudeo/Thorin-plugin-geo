@@ -1,13 +1,13 @@
 {
   "name": "thorin-plugin-geo",
   "author": "UNLOQ Systems LTD",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "dependencies": {
-    "thorin-geoip-lite": "1.x",
+    "thorin-geoip-lite": "^1.0.1",
     "thorin-geoip-ultralight": "1.x"
   },
   "scripts": {
-    "updatedb": "node node_modules/geoip-lite/scripts/updatedb.js"
+    "updatedb": "node node_modules/thorin-geoip-lite/scripts/updatedb.js"
   },
   "description": "Thorin.js extended utilities",
   "main": "index.js",
